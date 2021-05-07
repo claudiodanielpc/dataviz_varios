@@ -2,7 +2,9 @@ import folium
 import pandas as pd
 from selenium import webdriver
 
-url="https://archivo.datos.cdmx.gob.mx/victimas_completa_2019_2020.csv"
+#Url de descarga
+url="https://archivo.datos.cdmx.gob.mx/victimas_completa_marzo_2021.csv"
+
 #Lectura de datos
 df = pd.read_csv(url)
 
