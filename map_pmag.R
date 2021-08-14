@@ -5,33 +5,33 @@ if(!require('pacman')) install.packages('pacman')
 pacman::p_load(tidyverse, leaflet)
 
 ##Se crea directorio de almacenamiento
-dir.create("ue/", showWarnings = FALSE)
+dir.create("D:/Documentos/ue/", showWarnings = FALSE)
 
 
 ##Liga primer archivo
 download.file(url = "https://www.inegi.org.mx/contenidos/masiva/denue/denue_00_72_1_csv.zip", 
-              destfile = "ue/denue_00_72_1_csv.zip")
+              destfile = "D:/Documentos/ue/denue_00_72_1_csv.zip")
 
 ##Liga segundo archivo
 download.file(url = "https://www.inegi.org.mx/contenidos/masiva/denue/denue_00_72_2_csv.zip",            
-              destfile = "ue/denue_00_72_2_csv.zip")
+              destfile = "D:/Documentos/ue/denue_00_72_2_csv.zip")
 
 
 ##Extraer archivos
-unzip("ue/denue_00_72_1_csv.zip",
-      exdir = "ue")
+unzip("D:/Documentos/ue/denue_00_72_1_csv.zip",
+      exdir = "D:/Documentos/ue")
 
-unzip("ue/denue_00_72_2_csv.zip",
-      exdir = "ue")
+unzip("D:/Documentos/ue/denue_00_72_2_csv.zip",
+      exdir = "D:/Documentos/ue")
 
 
 ###Leer archivos
 
-ue1<-read.csv("ue/conjunto_de_datos/denue_inegi_72_1.csv",
+ue1<-read.csv("D:/Documentos/ue/conjunto_de_datos/denue_inegi_72_1.csv",
               encoding="latin",header=TRUE,check.names=FALSE)
 
 
-ue2<-read.csv("ue/conjunto_de_datos/denue_inegi_72_2.csv",
+ue2<-read.csv("D:/Documentos/ue/conjunto_de_datos/denue_inegi_72_2.csv",
               encoding="latin",header=TRUE,check.names=FALSE)
 
 
@@ -56,7 +56,7 @@ ue<-ue%>%
   ##Crear clave geoestadística  
   mutate(cvegeo=paste0(cve_ent,cve_mun))%>%
   ##Filtro de pueblos mágicos
-  filter(cvegeo=="14086")
+  filter(cvegeo=="31040")
   
   
   ##Remover los archivos
@@ -66,7 +66,7 @@ ue<-ue%>%
 
 #Directorio de trabajo
 
-setwd("C:/Users/ALIENWARE/Documents/turismo/turismo/pueblos")
+#setwd("C:/Users/ALIENWARE/Documents/turismo/turismo/pueblos")
 
 ##Título y fuente del gráfico
 tit<-htmltools::HTML("<b style='font-size:23px; font-family:century gothic'>",
@@ -102,5 +102,5 @@ mapa
 
 ##Guardar mapa
 mapview::mapshot(mapa,
-                 file=paste0("mapa",
+                 file=paste0("D:/Documentos/mapa",
                                   unique(ue$municipio),".png"))
