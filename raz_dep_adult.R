@@ -1,4 +1,4 @@
-#Relación de dependencia
+#Razón de dependencia adulta
 
 
 ##Borrar datos del entorno
