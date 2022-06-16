@@ -64,7 +64,7 @@ Fuente: @claudiodanielpc con información de CONAPO."
                           size=20, color="#bdbdbd"),
         axis.title = element_text(face = "bold"),
         axis.text = element_text(color="#bdbdbd", face = "bold"),
-        #Fondo negro
+        #Fondo verde
         plot.background = element_rect(fill = "#285c4d")
         
         )
