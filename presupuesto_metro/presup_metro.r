@@ -47,7 +47,7 @@ catalogo<-egresos2022%>%select(concepto,desc_concepto)%>%distinct()
 #Unir ambas bases de datos
 egresos<-rbind(egresos2018,egresos2019,egresos2020,egresos2021,egresos2022)%>%
 
-#filtrar por UR
+#filtrar por UR y aprobado
 filter(desc_unidad_responsable=="Sistema de Transporte Colectivo Metro" &
  periodo=="Aprobado")
 
@@ -62,7 +62,7 @@ left_join(inpc)%>%
 mutate(total_deflactado=total/inpc_cambio_base*100)%>%
 #Cifras en millones de pesos
 mutate(total_deflactado=round(total_deflactado/1000000,2))%>%
-#pivot wider con años como columnas y partida_especifica como filas
+#pivot wider con años como columnas y concepto como filas
 pivot_wider(id_cols = c("concepto"),
             names_from = ciclo,
             values_from = total_deflactado)%>%
@@ -75,9 +75,9 @@ desc_concepto=="-"~ "Total",
 TRUE ~desc_concepto
 
 ))%>%
-#Todas las columnas con seoarador de miles
+
  
-#Crear variación 2019 vs 2018
+#Crear variaciones
 mutate(variacion_2018_2019=round((`2019`/`2018`-1)*100,2),
        variacion_2019_2020=round((`2020`/`2019`-1)*100,2),
        variacion_2020_2021=round((`2021`/`2020`-1)*100,2),
@@ -91,9 +91,8 @@ mutate(variacion_2018_2019=round((`2019`/`2018`-1)*100,2),
        #Formato de miles
   mutate_all(funs(format(.,big.mark = ",")))%>%
 
-       #Eliminar columna de partida específica y poner descripción al principio
+       #Eliminar columna de concepto y poner descripción al principio
        select(!concepto)%>%
-       #Descripción partida al inicio
          select(desc_concepto, everything())%>%
                 #Tabla
   gt(rowname_col = "row", groupname_col = "group") %>%
