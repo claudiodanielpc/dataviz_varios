@@ -61,7 +61,7 @@ left_join(inpc)%>%
 #Deflactar usando inpc_cambio_base
 mutate(total_deflactado=total/inpc_cambio_base*100)%>%
 #Cifras en millones de pesos
-mutate(total_deflactado=round(total_deflactado/1000000,2))%>%
+mutate(total_deflactado=round(total_deflactado/1000000,1))%>%
 #pivot wider con años como columnas y concepto como filas
 pivot_wider(id_cols = c("concepto"),
             names_from = ciclo,
@@ -78,10 +78,10 @@ TRUE ~desc_concepto
 
  
 #Crear variaciones
-mutate(variacion_2018_2019=round((`2019`/`2018`-1)*100,2),
-       variacion_2019_2020=round((`2020`/`2019`-1)*100,2),
-       variacion_2020_2021=round((`2021`/`2020`-1)*100,2),
-       variacion_2021_2022=round((`2022`/`2021`-1)*100,2),
+mutate(variacion_2018_2019=round((`2019`/`2018`-1)*100,1),
+       variacion_2019_2020=round((`2020`/`2019`-1)*100,1),
+       variacion_2020_2021=round((`2021`/`2020`-1)*100,1),
+       variacion_2021_2022=round((`2022`/`2021`-1)*100,1),
 
        #Crear tasa de crecimiento promedio anual de 2022 vs 2018
        tcma=round((`2022`/`2018`)^(1/4)-1,2))%>%
