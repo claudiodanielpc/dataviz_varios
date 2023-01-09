@@ -84,7 +84,7 @@ mutate(variacion_2018_2019=round((`2019`/`2018`-1)*100,1),
        variacion_2021_2022=round((`2022`/`2021`-1)*100,1),
 
        #Crear tasa de crecimiento promedio anual de 2022 vs 2018
-       tcma=round((`2022`/`2018`)^(1/4)-1,2))%>%
+       tcma=round(((`2022`/`2018`)^(1/4)-1)*100,1))%>%
        #Reemplazar NA por 0 en cada columna
   mutate_all(funs(replace(.,is.na(.),0)))%>%
 
