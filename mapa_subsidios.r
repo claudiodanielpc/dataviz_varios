@@ -94,8 +94,8 @@ geom_sf(aes(fill=pct),color="white")+
                          palette = "YlOrBr", direction = 1, limits=c(min(datosmapa$pct),
                          max(datosmapa$pct)))+
  theme_void()+
-labs(title="Subsidios CONAVI por administración y entidad",
-     subtitle="% de subsidios por entidad y administración\n",
+labs(title="Subsidios CONAVI por administración y entidad federativa",
+     subtitle="% respecto del total por administración\n",
      caption="Fuente: @claudiodanielpc con datos de SEDATU. Sistema Nacional de Información e Indicadores de Vivienda (SNIIV).",
      fill="Subsidios")+
              theme(plot.title = element_text(hjust = 0, size=30,face="bold"),
@@ -115,5 +115,5 @@ facet_wrap(~admon,
            ncol=2)
 
 ggsave("mapasubsidios.png", height = 10,
-       width = 20, units="in", dpi=100, bg="white")
+       width = 15, units="in", dpi=100, bg="white")
 
